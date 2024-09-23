@@ -23,16 +23,17 @@ def show
   end
 
   def update
+    @article = Article.find(params[:id])
     if @article.update(article_params)
-        render json: @article, status: :updated
+      render json: @article, status: :ok
     else
-        render json: @article.errors, status: :unprocessable_entity
+      render json: @article.errors, status: :unprocessable_entity
     end
   end
-
-
+  
+  
   def destroy
-    
+    @article = Article.find(params[:id])
     @article.destroy
 
     head :no_content
